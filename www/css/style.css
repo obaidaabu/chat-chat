@@ -1,0 +1,115 @@
+.tab-item .icon{
+  display: none !important;
+}
+.bar.bar-positive{
+  background-color: #055f54 !important;
+}
+.tabs-striped.tabs-background-positive .tabs{
+  background-color: #055f54 !important;
+}
+.tab-title{
+  font-weight: bold;
+}
+.tabs-top > .tabs, .tabs.tabs-top{
+  top: 43px;
+}
+
+.bar .button.button-icon, .bar button.button-icon{
+  font-size: 14px !important;
+}
+.scroll {
+  padding: 10px 0 50px !important;
+}
+
+.padding-15px{
+  padding: 15px;
+}
+.button-bg{
+  height: 50px;
+  border-bottom-color: #055F54 !important;
+  border-bottom-width: 3px;
+  font-size: 25px !important;
+  background-color: #138879 !important;
+  font-weight: bold;
+}
+.add-subject input,textarea{
+  font-size: 17px !important;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 45px !important;
+  padding: 10px !important;
+  width: 100%;
+  top: 20px;
+}
+.add-subject textarea{
+  margin-top:10px ;
+  height: 145px !important;
+
+}
+.item-options .button{
+  background-color: transparent;
+}
+.item-options .button:before{
+  font-size: 30px;
+  color: #864141;
+}
+.bar.bar-stable.bar-footer{
+  background: #BCDEC6;
+}
+.send-message-input{
+  width: 100%;
+  padding: 5px !important;
+  border-radius: 5px ;
+}
+.ion-android-send{
+  margin-left: 10px !important;
+}
+
+
+
+.sender-span {
+  background: #BCDEC6 !important;
+  display: inline-block !important;
+  color: black !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 240px !important;
+}
+.reciver-span {
+  background: #C2CBD4 !important;
+  display: inline-block !important;
+  color: black !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: right !important;
+  max-width: 240px !important;
+}
+.sender-div{
+  padding-right: 10px;
+  padding-left: 10px;
+  direction: ltr;
+  padding-top: 5px;
+}
+.reciver-div{
+  padding-right: 10px;
+  padding-left: 10px;
+  direction: rtl;
+  padding-top: 5px;
+}
+.ion-record{
+  position: absolute;
+  bottom: 0px;
+  left: 37px;
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  height: 100%;
+
+}
+.online-circle{
+  color: green;
+}
+.offline-circle{
+  color: red ;
+}

@@ -1,0 +1,15 @@
+<ion-header-bar class="bar-positive">
+  <div class="buttons">
+    <button menu-toggle="left" class="button button-icon icon ion-android-more-vertical"></button>
+  </div>
+  <h1 class="title">
+    <a ng-if="roboholdImg" href="#/tab/home"><img class="robohold-title" ng-src={{roboholdImg}}></a>
+    <span ng-if="!roboholdImg">{{orgName}}</span>
+  </h1>
+
+  <div ng-controller="AppCtrl" class="buttons">
+
+      <button ng-click="addSubjectView()" class="button button-icon icon ion-plus-circled"></button>
+
+  </div>
+</ion-header-bar>

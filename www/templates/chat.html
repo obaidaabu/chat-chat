@@ -1,0 +1,32 @@
+<ion-view>
+  <header-bar></header-bar>
+  <ion-content class="content-stable">
+
+    <div ng-class="message.sender==userId ? 'sender-div' : (message.sender!=userId ? 'reciver-div' : 'sender-div')" ng-repeat="message in messages"
+         class="messages">
+
+
+
+      <div class="sender-span" ng-if="message.sender==userId">
+        <span>{{ message.body }}</span>
+      </div>
+      <div class="reciver-span" ng-if="message.sender!=userId">
+        <span> {{ message.body }}</span>
+      </div>
+
+
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+
+    <input class="send-message-input" type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="messageContent" on-focus="inputUp()" on-blur="inputDown()" />
+
+    <button class="button button-clear ion-android-send" ng-click="sendMessage()">
+
+    </button>
+  </ion-footer-bar>
+</ion-view>
+

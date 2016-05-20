@@ -1,0 +1,16 @@
+<ion-view>
+  <header-bar></header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <input ng-model='user.userName' type="text" placeholder="User Name">
+      </label>
+      <label class="item item-input">
+        <input ng-model='user.userPass' type="text" placeholder="Password">
+      </label>
+      <button ng-click="login()" class="button button-positive">
+        Login
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

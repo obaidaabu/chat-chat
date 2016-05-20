@@ -1,0 +1,21 @@
+<ion-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button ng-click="GoBack()" class="button button-icon icon ion-android-arrow-back"></button>
+    </div>
+    <h1 class="title">
+      <a ng-if="roboholdImg" href="#/tab/home"><img class="robohold-title" ng-src={{roboholdImg}}></a>
+      <span ng-if="!roboholdImg">{{orgName}}</span>
+    </h1>
+
+    <div class="buttons">
+      <button ng-click="create()" class="button button-icon icon ion-android-done create-size"> CREATE</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="add-subject padding-15px">
+      <input ng-model="$root.subjectTitle" type="text" placeholder="Subject Name">
+      <textarea ng-model="$root.subjectDesc" placeholder="Description"></textarea>
+    </div>
+  </ion-content>
+</ion-view>

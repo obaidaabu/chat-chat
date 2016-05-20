@@ -1,0 +1,20 @@
+<ion-view cache-view="false">
+  <header-bar></header-bar>
+  <ion-content>
+
+
+    <ion-list>
+      <ion-item ng-click="goToChat(message.conversationId)" class="item-avatar" ng-repeat="message in messages">
+
+        <img src="img/person.jpg">
+
+        <h2>{{message.subjectName+'-'+message.userName}}</h2>
+
+        <p>{{message.lastMessage}}</p>
+        <i class="icon ion-record" ng-class="{'online-circle': message.online, 'offline-circle': !message.online}"></i>
+        <ion-option-button class="button-positive ion-android-remove-circle"  ></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
