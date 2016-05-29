@@ -37,7 +37,8 @@
         StatusBar.styleDefault();
       }
       var uuid = window.localStorage['userId'];
-
+      var uuid = "574b5ec166fc10dd4d436ac8";
+     
       if (uuid && uuid != 'undefined') {
 
         $state.go("tab.subjects");
