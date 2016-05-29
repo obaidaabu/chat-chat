@@ -36,8 +36,9 @@
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+      window.localStorage['userId'] = "574b5ec166fc10dd4d436ac8";
       var uuid = window.localStorage['userId'];
-      var uuid = "574b5ec166fc10dd4d436ac8";
+
      
       if (uuid && uuid != 'undefined') {
 
