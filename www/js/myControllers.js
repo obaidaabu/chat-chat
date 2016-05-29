@@ -99,18 +99,44 @@ angular.module('controllers', [])
   })
 
   .
-  controller('LoginCtrl', function ($scope, $state, $ionicPlatform, UserService) {
+  controller('LoginCtrl', function ($scope, $state, $ionicPlatform,$rootScope, UserService) {
     $scope.user = {
       userName:'',
       userPass:'',
       notification_token:''
     }
-    if(window.cordova && typeof window.plugins.OneSignal != 'undefined'){
-      window.plugins.OneSignal.getIds(function (ids) {
-        window.localStorage['notification_token'] = ids.userId;
 
-      });
-    }
+    $scope.fbLogin = function() {
+      UserService.FBlogin().then(function success(s) {
+
+        if(window.cordova && typeof window.plugins.OneSignal != 'undefined'){
+          window.plugins.OneSignal.getIds(function (ids) {
+            window.localStorage['notification_token'] = ids.userId;
+
+          });
+        }
+        var fbData = angular.fromJson(window.localStorage['fbData']);     
+       
+        var user ={
+          fbToken: fbData['accessToken'],
+          notification_token: window.localStorage['notification_token']
+        }
+    
+        UserService.CreateUser(user)
+          .then(function (user) {
+            alert("2");
+            window.localStorage['userId'] = user._id;
+             $state.go("tab.subjects");
+          }, function (err) {
+          });
+        //alert($scope.FbName)
+
+       
+        
+      }, function error(msg) {
+        console.log("Error while performing Facebook login", msg);
+      })
+    };
 
     $scope.login = function () {
       $scope.user.notification_token = window.localStorage['notification_token'];

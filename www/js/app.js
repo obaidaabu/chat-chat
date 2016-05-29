@@ -24,7 +24,7 @@
         var notificationOpenedCallback = function (jsonData) {
 
           var conversationId = jsonData.additionalData.conversationId;
-          
+
           $state.go("chat",{conversationId: conversationId});
 
         };
@@ -37,6 +37,7 @@
         StatusBar.styleDefault();
       }
       var uuid = window.localStorage['userId'];
+
       if (uuid && uuid != 'undefined') {
 
         $state.go("tab.subjects");

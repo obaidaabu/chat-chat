@@ -2,21 +2,21 @@ angular.module('services', [])
   .factory('ConfigurationService', function () {
     return {
       ServerUrl: function () {
-        return "https://chatad.herokuapp.com";
+       // return "https://chatad.herokuapp.com";
          // return "http://10.0.0.3:3000";
+         return "http://192.168.1.14:3000";
       }
     }
   })
-  .factory('UserService', function ($http, $log, $q, ConfigurationService) {
+  .factory('UserService', function ($http, $log, $q, $cordovaFacebook, ConfigurationService) {
     return {
 
       CreateUser: function (user) {
         var deferred = $q.defer();
-        alert(user.notification_token);
+        
         $http.post(ConfigurationService.ServerUrl() + '/api/users',
           {
-            "userName": user.userName,
-            "password": user.userPass,
+            "fbToken": user.fbToken,
             "notification_token" : user.notification_token
           }
           , {
@@ -30,7 +30,36 @@ angular.module('services', [])
             //   $log.error(msg, code);
           });
         return deferred.promise;
-      }
+      },
+      FBlogin: function () {
+        var deferred = $q.defer();
+        $cordovaFacebook.login(["public_profile", "email", "user_friends","user_birthday"]).then(
+          function success(result) {
+            
+           
+            window.localStorage['fbData'] = angular.toJson(result.authResponse);
+            
+              $cordovaFacebook.api("me/?fields=id,name,first_name,picture", ["public_profile"])
+                .then(function(success) {
+                  window.localStorage['fbName'] = success.name;
+                  window.localStorage['fbFirstName'] = success.first_name;
+                  window.localStorage['fbPicture'] = angular.toJson(success.picture);
+                 
+                  
+                  deferred.resolve(success);
+                  // success
+                }, function (error) {
+                  // error
+                });
+          },
+          function error(reason) {
+            
+            loggedIn = false;
+            deferred.reject("Failed to login to facebook");
+          }
+        );
+        return deferred.promise;
+      },      
     }
   })
   .factory('SubjectService', function ($http, $log, $q, ConfigurationService) {

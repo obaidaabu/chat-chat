@@ -1,16 +1,45 @@
 <ion-view>
-  <header-bar></header-bar>
+
   <ion-content>
-    <div class="list">
-      <label class="item item-input">
-        <input ng-model='user.userName' type="text" placeholder="User Name">
-      </label>
-      <label class="item item-input">
-        <input ng-model='user.userPass' type="text" placeholder="Password">
-      </label>
-      <button ng-click="login()" class="button button-positive">
-        Login
-      </button>
-    </div>
+            <button ng-if="!FbName" ng-click="fbLogin()" class="button button-block button-positive icon-left ion-social-facebook fb-button">
+            פייסבוק
+          </button>
+
+
   </ion-content>
 </ion-view>
+
+<!-- <ion-view >
+  <ion-content>
+    <div class="auth-page">
+      
+        <div class="text-center auth-img-title"><img src="img/auth-robo-logo.png" alt="Robohold"></div>
+        <div class="auth-opacity">
+          <div class="fb-div">
+
+          <button ng-if="!FbName" ng-click="fbLogin()" class="button button-block button-positive icon-left ion-social-facebook fb-button">
+            פייסבוק
+          </button>
+          <div class="center-text"><span ng-if="FbName">{{FbName}} ברוך הבא</span></div>
+          
+        </div>
+          <div class="line-break">
+            
+            <img src="img/line2.png"/>
+          </div>
+
+          <div class="form-action margin-top-per">
+            <div class="auth-text-align">
+              <span>התחבר באמצעות מס' הטלפון שלך</span>
+            </div>
+            <input ng-focus="registerOnFoucs()" ng-blur="registerOnBlur()" ng-model="phone" type="tel" class="auth-phone" placeholder="{{'phone_number' | translate}}">
+           
+            <button ng-click="registerPhone()" class="button button-block button-positive  button-bg">
+            התחבר
+            </button>
+          </div>
+        </div>
+
+    </div>
+  </ion-content>
+</ion-view> -->

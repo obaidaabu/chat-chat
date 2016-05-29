@@ -21,15 +21,15 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
+    "onesignal-cordova-plugin",
     {
-      "id": "phonegap-facebook-plugin",
-      "locator": "phonegap-facebook-plugin",
+      "id": "cordova-plugin-facebook4",
+      "locator": "cordova-plugin-facebook4",
       "variables": {
         "APP_ID": "1772880012943378",
         "APP_NAME": "chaty"
       }
-    },
-    "onesignal-cordova-plugin"
+    }
   ],
   "cordovaPlatforms": [
     "ios",
