@@ -244,14 +244,17 @@ angular.module('controllers', [])
              var localMessages = angular.fromJson(window.localStorage['messages']);
              debugger;
              var indexx=indexOfConv(localMessages,conversationId);
+             var readMessage = true;
              if(indexx===-1) {
                 alert("2");
+                readMessage = false;
              }
              else
              {
                 alert("3")
              }
             }else{
+              readMessage = false;
               alert("1")
             }
 
@@ -269,14 +272,14 @@ angular.module('controllers', [])
                if(indexx===-1) {
                  $scope.messages.push({
                    conversationId: conversationId, lastMessage: lastMessage,lastMessageKey:lastMessageKey,
-                   subjectName: value.subjectName, userName: value.userName, online: online
+                   subjectName: value.subjectName, userName: value.userName, online: online, readMessage:readMessage
                  });
                }
                else
                {
                  $scope.messages[indexx]=
                  {conversationId: conversationId, lastMessage: lastMessage,lastMessageKey:lastMessageKey,
-                 subjectName: value.subjectName, userName: value.userName, online: online
+                 subjectName: value.subjectName, userName: value.userName, online: online, readMessage: readMessage
                };
                }
                
