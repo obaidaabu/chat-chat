@@ -12,7 +12,7 @@
 
         <p>{{message.lastMessage}}</p>
         <i class="icon ion-record online-offline" ng-class="{'online-circle': message.online, 'offline-circle': !message.online}"></i>
-                <i class="icon ion-record read-message" ></i>
+        <i ng-if="!message.readMessage" class="icon ion-record read-message" ></i>
         <ion-option-button class="button-positive ion-android-remove-circle"  ></ion-option-button>
       </ion-item>
     </ion-list>

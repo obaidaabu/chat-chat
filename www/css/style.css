@@ -97,8 +97,14 @@
   direction: rtl;
   padding-top: 5px;
 }
-.ion-record{
-
+.read-message{
+   position: absolute;
+  bottom: 0px;
+  right: 0;
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  height: 100%; 
 
 }
 .online-offline{

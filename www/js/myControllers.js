@@ -41,11 +41,9 @@ angular.module('controllers', [])
       var localMessages = angular.fromJson(window.localStorage['messages']);
       var messagIndexx=common.indexOfConv(localMessages,conversationId);
       if(messagIndexx==-1){
-        alert("a");
       }
       else{
         if(localMessages[messagIndexx].lastMessageKey !=lastMessageKey){
-          alert("b");
         }
       }
     }else{
@@ -246,16 +244,13 @@ angular.module('controllers', [])
              var indexx=indexOfConv(localMessages,conversationId);
              var readMessage = true;
              if(indexx===-1) {
-                alert("2");
                 readMessage = false;
              }
              else
              {
-                alert("3")
              }
             }else{
               readMessage = false;
-              alert("1")
             }
 
             var userRef = new Firebase('https://chatoi.firebaseio.com/presence/'+createrId);
@@ -286,7 +281,6 @@ angular.module('controllers', [])
               if(!$scope.$$phase) {
                 $scope.$apply();
               }
-             // $scope.$apply();
             });
 
           }, x);
