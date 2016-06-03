@@ -15,10 +15,7 @@ angular.module('services', [])
         var deferred = $q.defer();
         
         $http.post(ConfigurationService.ServerUrl() + '/api/users',
-          {
-            "fbToken": user.fbToken,
-            "notification_token" : user.notification_token
-          }
+          user
           , {
             headers: {
               "Content-Type":"application/json"
@@ -39,10 +36,11 @@ angular.module('services', [])
            
             window.localStorage['fbData'] = angular.toJson(result.authResponse);
             
-              $cordovaFacebook.api("me/?fields=id,name,first_name,picture", ["public_profile"])
+              $cordovaFacebook.api("me/?fields=id,name,first_name,last_name,picture", ["public_profile"])
                 .then(function(success) {
                   window.localStorage['fbName'] = success.name;
                   window.localStorage['fbFirstName'] = success.first_name;
+                  window.localStorage['fbLastName'] = success.first_name;
                   window.localStorage['fbPicture'] = angular.toJson(success.picture);
                  
                   

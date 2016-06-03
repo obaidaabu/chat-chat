@@ -35,7 +35,29 @@ angular.module('controllers', [])
   })
   .controller('ChatCtrl', function ($scope, $state, $firebaseArray,$firebaseObject,NotificationService) {
     $scope.conversationId = $state.params.conversationId;
-
+    $scope.lastMessageKey = $state.params.lastMessageKey;
+    debugger
+    if(window.localStorage['messages']){
+      var localMessages = angular.fromJson(window.localStorage['messages']);
+      var messagIndexx=common.indexOfConv(localMessages,conversationId);
+      if(messagIndexx==-1){
+        alert("a");
+      }
+      else{
+        if(localMessages[messagIndexx].lastMessageKey !=lastMessageKey){
+          alert("b");
+        }
+      }
+    }else{
+      var messagesToPush =[];
+      var messageToPush = {
+        conversationId: $scope.conversationId,
+        lastMessageKey: $scope.lastMessageKey
+      }
+      messagesToPush.push(messageToPush);
+      window.localStorage['messages'] = angular.toJson(messagesToPush);
+    }
+    
     $scope.userId = window.localStorage['userId'];
     var createrId = $scope.conversationId.split("-")[0];
     var subjectId = $scope.conversationId.split("-")[1];
@@ -116,15 +138,17 @@ angular.module('controllers', [])
           });
         }
         var fbData = angular.fromJson(window.localStorage['fbData']);     
-       
         var user ={
           fbToken: fbData['accessToken'],
           notification_token: window.localStorage['notification_token']
+          // fbUserId: fbData['userID'],
+          // first_name: window.localStorage['fbFirstName'],
+          // last_name: window.localStorage['fbLastName'],
+           
         }
     
         UserService.CreateUser(user)
           .then(function (user) {
-            alert("2");
             window.localStorage['userId'] = user._id;
              $state.go("tab.subjects");
           }, function (err) {
@@ -156,6 +180,7 @@ angular.module('controllers', [])
 
     var uuid = angular.fromJson(window.localStorage['uuid']);
     var userId = window.localStorage['userId']
+    console.log(userId);
     var amOnline = new Firebase('https://chatoi.firebaseio.com/.info/connected');
     var userRef = new Firebase('https://chatoi.firebaseio.com/presence/' + userId);
 
@@ -166,15 +191,6 @@ angular.module('controllers', [])
         userRef.set('online');
       }
     });
-    //document.onIdle = function () {
-    //  userRef.set('☆ idle');
-    //}
-    //document.onAway = function () {
-    //  userRef.set('☄ away');
-    //}
-    //document.onBack = function (isIdle, isAway) {
-    //  userRef.set('★ online');
-    //}
     $scope.subjects = [];
     SubjectService.GetSubjects(userId)
       .then(function (subjects) {
@@ -210,15 +226,35 @@ angular.module('controllers', [])
 
       list.$loaded()
         .then(function (x) {
+          
+
           $scope.messages = [];
           $rootScope.rootChatCounter=$rootScope.rootChatCounter+1;
           angular.forEach(x, function (value, key) {
 
             var conversationId = value.$id;
+       
             var messagesArray = Object.getOwnPropertyNames(value.messages);
             var lastMessageKey = messagesArray[messagesArray.length - 1];
+   
             var lastMessage = value.messages[lastMessageKey].body;
             var createrId = conversationId.split("-")[0];
+
+            if (window.localStorage['messages']){
+             var localMessages = angular.fromJson(window.localStorage['messages']);
+             debugger;
+             var indexx=indexOfConv(localMessages,conversationId);
+             if(indexx===-1) {
+                alert("2");
+             }
+             else
+             {
+                alert("3")
+             }
+            }else{
+              alert("1")
+            }
+
             var userRef = new Firebase('https://chatoi.firebaseio.com/presence/'+createrId);
 
             userRef.on("value", function(userSnapshot) {
@@ -232,17 +268,18 @@ angular.module('controllers', [])
                var indexx=indexOfConv($scope.messages,conversationId);
                if(indexx===-1) {
                  $scope.messages.push({
-                   conversationId: conversationId, lastMessage: lastMessage,
+                   conversationId: conversationId, lastMessage: lastMessage,lastMessageKey:lastMessageKey,
                    subjectName: value.subjectName, userName: value.userName, online: online
                  });
                }
                else
                {
                  $scope.messages[indexx]=
-                 {conversationId: conversationId, lastMessage: lastMessage,
+                 {conversationId: conversationId, lastMessage: lastMessage,lastMessageKey:lastMessageKey,
                  subjectName: value.subjectName, userName: value.userName, online: online
                };
                }
+               
               if(!$scope.$$phase) {
                 $scope.$apply();
               }
@@ -265,8 +302,9 @@ function indexOfConv(arr,convId){
   }
   return -1;
 }
-    $scope.goToChat = function (conversationId) {
-      $state.go('chat', {conversationId: conversationId})
+
+    $scope.goToChat = function (message) {
+      $state.go('chat', {conversationId: message.conversationId ,lastMessageKey:message.lastMessageKey})
     }
   });
 

@@ -36,7 +36,14 @@
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
-      window.localStorage['userId'] = "574b5ec166fc10dd4d436ac8";
+      // if(!window.localStorage['userId']){
+      //   window.localStorage['userId'] = "574df1a6064a6445864bca43";
+      // }
+      window.localStorage.clear();
+      if(!window.localStorage['userId']){
+        window.localStorage['userId'] = "574df1a6064a6445864bca43";
+        window.localStorage['userName'] = "aa";
+      }
       var uuid = window.localStorage['userId'];
 
      
@@ -59,7 +66,7 @@
       })
 
         .state('chat', {
-          url: '/chat/:conversationId/:userName/:subjectName',
+          url: '/chat/:conversationId/:lastMessageKey/:userName/:subjectName',
           templateUrl: 'templates/chat.html',
           controller: "ChatCtrl"
         })
